@@ -38,14 +38,14 @@ class AvatarGenerator {
         ): BitmapDrawable {
             uiContext = context
 
-            texSize = calTextSize(size)
+            texSize = calTextSize(name, size)
             val textPaint = textPainter()
             val painter = painter()
             painter.isAntiAlias = true
             val areaRect = Rect(0, 0, size, size)
 
             if (shape == 0) {
-                painter.color = RandomColors(colorModel).getColor()
+                painter.color = RandomColors(colorModel).getColor(name)
             } else {
                 painter.color = Color.TRANSPARENT
             }
@@ -58,11 +58,11 @@ class AvatarGenerator {
             if (shape == 0) {
                 painter.color = Color.TRANSPARENT
             } else {
-                painter.color = RandomColors(colorModel).getColor()
+                painter.color = RandomColors(colorModel).getColor(name)
             }
 
             val bounds = RectF(areaRect)
-            bounds.right = textPaint.measureText(name, 0, 1)
+            bounds.right = textPaint.measureText(name, 0, name.length)
             bounds.bottom = textPaint.descent() - textPaint.ascent()
 
             bounds.left += (areaRect.width() - bounds.right) / 2.0f
@@ -86,8 +86,8 @@ class AvatarGenerator {
             return Paint()
         }
 
-        private fun calTextSize(size: Int): Float {
-            return (size / 3.125).toFloat()
+        private fun calTextSize(text: String,size: Int): Float {
+            return (size / (3.125 * text.length)).toFloat()
         }
     }
 }
