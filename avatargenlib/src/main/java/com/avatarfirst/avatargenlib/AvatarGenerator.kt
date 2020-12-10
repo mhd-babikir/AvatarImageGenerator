@@ -5,8 +5,6 @@ import android.graphics.*
 import android.graphics.Bitmap.Config.ARGB_8888
 import android.graphics.drawable.BitmapDrawable
 import android.text.TextPaint
-import android.util.Log
-import java.util.*
 
 /**
  * Created by Korir on 1/21/20.
@@ -41,15 +39,12 @@ class AvatarGenerator {
             uiContext = context
 
             texSize = calTextSize(size)
-            val label = firstCharacter(name)
             val textPaint = textPainter()
             val painter = painter()
             painter.isAntiAlias = true
             val areaRect = Rect(0, 0, size, size)
 
             if (shape == 0) {
-                val firstLetter = firstCharacter(name)
-                val r = firstLetter[0]
                 painter.color = RandomColors(colorModel).getColor()
             } else {
                 painter.color = Color.TRANSPARENT
@@ -63,27 +58,20 @@ class AvatarGenerator {
             if (shape == 0) {
                 painter.color = Color.TRANSPARENT
             } else {
-                val firstLetter = firstCharacter(name)
-                val r = firstLetter[0]
                 painter.color = RandomColors(colorModel).getColor()
             }
 
             val bounds = RectF(areaRect)
-            bounds.right = textPaint.measureText(label, 0, 1)
+            bounds.right = textPaint.measureText(name, 0, 1)
             bounds.bottom = textPaint.descent() - textPaint.ascent()
 
             bounds.left += (areaRect.width() - bounds.right) / 2.0f
             bounds.top += (areaRect.height() - bounds.bottom) / 2.0f
 
             canvas.drawCircle(size.toFloat() / 2, size.toFloat() / 2, size.toFloat() / 2, painter)
-            canvas.drawText(label, bounds.left, bounds.top - textPaint.ascent(), textPaint)
+            canvas.drawText(name, bounds.left, bounds.top - textPaint.ascent(), textPaint)
             return BitmapDrawable(uiContext.resources, bitmap)
 
-        }
-
-
-        private fun firstCharacter(name: String): String {
-            return name.first().toString().toUpperCase(Locale.ROOT)
         }
 
         private fun textPainter(): TextPaint {
