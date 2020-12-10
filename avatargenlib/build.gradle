@@ -2,23 +2,25 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
+group='com.github.mhd-babikir'
+
 ext {
   bintrayRepo = 'AvatarGenerator'
   bintrayName = 'AvatarGenerator'
 
-  publishedGroupId ='com.first.avatargenerator'
+  publishedGroupId ='github.mhd-babikir.avatargenerator'
   libraryName ='AvatarImageGenerator'
   artifact ='AvatarImageGenerator'
 
   libraryDescription ='Create first later avatar , for image place holder'
 
-  siteUrl = 'https://github.com/skyways/AvatarImageGenerator'
-  gitUrl = 'https://github.com/skyways/AvatarImageGenerator'
+  siteUrl = 'https://github.com/mhd-babikir/AvatarImageGenerator'
+  gitUrl = 'https://github.com/mhd-babikir/AvatarImageGenerator'
 
-  libraryVersion = '1.4'
-  developerId = 'skyways'
-  developerName = 'Korir Amos'
-  developerEmail = 'amoskrr@gmail.com'
+  libraryVersion = '1.5'
+  developerId = 'mhd.babikir.ali@gmail.com'
+  developerName = 'Mohamed Babikir'
+  developerEmail = 'mhd.babikir.ali@gmail.com'
 
   licenseName = 'The Apache Software License, Version 2.0'
   licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
@@ -31,8 +33,8 @@ android {
   defaultConfig {
     minSdkVersion 15
     targetSdkVersion 29
-    versionCode 4
-    versionName "1.4"
+    versionCode 5
+    versionName "1.5"
 
     testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     consumerProguardFiles 'consumer-rules.pro'
