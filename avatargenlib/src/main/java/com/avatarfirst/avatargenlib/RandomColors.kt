@@ -1,30 +1,23 @@
 package com.avatarfirst.avatargenlib
 
-import java.util.Arrays
-import java.util.Collections
-import java.util.Stack
+import java.util.*
+import kotlin.collections.ArrayList
+import kotlin.math.abs
 
 /**
  * Created by Korir on 1/23/20.
  */
 
 internal class RandomColors(colorModel:Int=700) {
-    private val recycle: Stack<Int> = Stack()
-    private val colors: Stack<Int> = Stack()
+    private val mColors = ArrayList<Int>()
 
-    fun getColor(): Int {
-        if (colors.size == 0) {
-            while (!recycle.isEmpty()) colors.push(recycle.pop())
-            Collections.shuffle(colors)
-        }
-        val c: Int = colors.pop()
-        recycle.push(c)
-        return c
+    fun getColor(key: Any): Int {
+        return mColors[abs(key.hashCode()) % mColors.size]
     }
 
     init {
         if (colorModel==700){
-            recycle.addAll(
+            mColors.addAll(
                 //A 700
                 listOf(
                     -0xd32f2f, -0xC2185B, -0x7B1FA2, -0x512DA8,
@@ -38,7 +31,7 @@ internal class RandomColors(colorModel:Int=700) {
 
         //A400
         if(colorModel==400){
-            recycle.addAll(
+            mColors.addAll(
                 listOf(
                     -0xef5350, -0xEC407A, -0xAB47BC, -0x7E57C2,
                     -0x5C6BC0, -0x42A5F5, -0x29B6F6, -0x26C6DA,
@@ -51,7 +44,7 @@ internal class RandomColors(colorModel:Int=700) {
 
         //A900
         if(colorModel==900){
-            recycle.addAll(
+            mColors.addAll(
                 listOf(
                     -0xb71c1c, -0x880E4F, -0x4A148C, -0x311B92,
                     -0x1A237E, -0x0D47A1, -0x01579B, -0x006064,
